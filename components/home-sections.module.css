@@ -1,0 +1,309 @@
+/* =========================================================
+   Cohesive styling for sections below the hero
+   Mobile-safe, Safari-safe, Vercel-safe
+   ========================================================= */
+
+.wrapper {
+  display: grid;
+  gap: 4rem;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+  margin-inline: auto;
+  max-width: 1200px;
+  padding-block-start: 6rem;
+  position: relative;
+}
+
+.wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 800px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(var(--primary) / 0.3) 20%,
+    hsl(var(--primary) / 0.6) 50%,
+    hsl(var(--primary) / 0.3) 80%,
+    transparent
+  );
+}
+
+/* ---------------------------------------------------------
+   Sections
+   --------------------------------------------------------- */
+.section {
+  display: grid;
+  gap: 2.5rem;
+}
+
+/* Redesigned section title with more visual impact */
+.sectionTitle {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--foreground);
+  letter-spacing: -0.03em;
+  text-align: center;
+  margin-block-end: 1.5rem;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.sectionTitle::after {
+  content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary) / 0.4));
+  border-radius: 2px;
+}
+
+/* ---------------------------------------------------------
+   Features grid
+   --------------------------------------------------------- */
+.features {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .features {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* ---------------------------------------------------------
+   Card with beautiful blur orb hover effect
+   --------------------------------------------------------- */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* Changed to center to fix alignment issues */
+  align-items: center;
+  text-align: center;
+  padding: 2.5rem 2rem;
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 0px 0px 14px 0px rgba(192, 192, 192, 0.2);
+  transition: all 0.6s ease;
+  overflow: hidden;
+  /* Added min-height to ensure consistent card heights */
+  min-height: 280px;
+}
+
+/* Removed bottom-right blur orb - only keep the main expanding one */
+
+/* Bottom-center large blur orb that expands on hover */
+.card::before {
+  content: "";
+  position: absolute;
+  bottom: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 180px;
+  background: hsl(var(--primary));
+  filter: blur(80px);
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.6s ease;
+  z-index: 0;
+}
+
+/* Simplified hover effect - orb expands and becomes visible */
+.card:hover::before {
+  bottom: 0%;
+  width: 500px;
+  height: 500px;
+  opacity: 1;
+  filter: blur(100px);
+}
+
+/* ---------------------------------------------------------
+   Card content
+   --------------------------------------------------------- */
+.cardHead {
+  display: flex;
+  flex-direction: column;
+  /* Center align everything */
+  align-items: center;
+  gap: 1rem;
+  margin-block-end: 1rem;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* Icon with light background that becomes primary on hover */
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: hsl(var(--primary) / 0.1);
+  transition: all 0.6s ease;
+  /* Added flex-shrink to prevent icon from shrinking */
+  flex-shrink: 0;
+}
+
+.card:hover .icon {
+  background: hsl(var(--primary));
+  transform: scale(1.05);
+}
+
+/* Invert icon color on hover to white */
+.card:hover .icon svg {
+  filter: brightness(0) invert(1);
+  transition: all 0.6s ease;
+}
+
+/* Title and text that transition to white on hover */
+.cardTitle {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #171d29;
+  line-height: 1.3;
+  transition: all 0.6s ease;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  /* Allow text to wrap naturally */
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.cardText {
+  color: #7e8882;
+  font-size: 1rem;
+  line-height: 1.6;
+  transition: all 0.6s ease;
+  margin-top: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------------------------------------------------------
+   Events grid
+   --------------------------------------------------------- */
+.eventsGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .eventsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---------------------------------------------------------
+   CTA
+   --------------------------------------------------------- */
+.cta {
+  display: grid;
+  justify-items: center;
+}
+
+.ctaBox {
+  width: min(100%, 860px);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) * 1.5);
+  background-color: var(--background);
+  padding: clamp(1rem, 3vw, 2rem);
+  text-align: center;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 6%);
+}
+
+@supports (backdrop-filter: blur(8px)) {
+  .ctaBox {
+    background-color: color-mix(in srgb, var(--background) 85%, transparent);
+    backdrop-filter: blur(8px);
+  }
+}
+
+.ctaTitle {
+  font-size: clamp(1.35rem, 3.5vw, 2rem);
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.ctaText {
+  margin-top: 0.5rem;
+  color: var(--muted-foreground);
+}
+
+.ctaActions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+/* ---------------------------------------------------------
+   Reveal animation (MOBILE SAFE)
+   --------------------------------------------------------- */
+
+/* Initial state */
+.wrapper [data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 420ms ease, transform 420ms ease;
+  will-change: opacity, transform;
+}
+
+/* Visible state */
+.wrapper [data-reveal].show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .wrapper [data-reveal],
+  .wrapper [data-reveal].show {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------------------------------------------------------
+   Mobile fine-tuning
+   --------------------------------------------------------- */
+@media (max-width: 767px) {
+  .wrapper {
+    gap: 3rem;
+    padding-block-start: 4rem;
+  }
+
+  .section {
+    gap: 2rem;
+  }
+
+  .card {
+    padding: 2rem 1.5rem;
+    min-height: 260px;
+  }
+
+  .icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .cardTitle {
+    font-size: 1.375rem;
+  }
+}

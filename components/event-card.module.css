@@ -1,0 +1,45 @@
+.card {
+  display: grid;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: clip;
+  background: var(--color-card);
+  transform-style: preserve-3d;
+  perspective: 800px;
+  box-shadow: 0 2px 12px color-mix(in oklab, var(--color-foreground) 6%, transparent);
+}
+.media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.image {
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform .6s ease;
+}
+.card:hover .image {
+  transform: scale(1.06);
+}
+.mediaGlow {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 55%;
+  background: linear-gradient(180deg, transparent, color-mix(in oklab, var(--color-primary) 16%, transparent));
+  pointer-events: none;
+}
+.body {
+  padding: .9rem;
+  display: grid;
+  gap: .25rem;
+}
+.body h3 {
+  font-weight: 700;
+}
+.meta {
+  color: color-mix(in oklab, var(--color-foreground) 70%, transparent);
+  font-size: .9rem;
+}
+.desc {
+  color: color-mix(in oklab, var(--color-foreground) 85%, transparent);
+}
