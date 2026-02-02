@@ -1,62 +1,104 @@
 .main {
   display: grid;
-  gap: 1rem;
+  gap: 3rem;
 }
-.grid {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 1rem;
-  display: grid;
-  gap: 1rem;
-}
+
 .section {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem 1rem;
+  padding: 0 1rem;
   display: grid;
+  gap: 2rem;
+}
+
+/* centered title container with underline accent */
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 1rem;
 }
+
 .sectionTitle {
-  font-size: clamp(1.25rem, 1vw + 1rem, 1.6rem);
+  font-size: clamp(1.5rem, 2vw + 1rem, 2.5rem);
   font-weight: 800;
-  letter-spacing: .2px;
+  letter-spacing: -0.5px;
   color: var(--color-foreground);
+  text-align: center;
 }
+
+/* blue underline accent below title */
+.titleUnderline {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+  border-radius: 2px;
+}
+
+.grid {
+  max-width: 100%;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
 .gridHeads {
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
+
 @media (min-width: 768px) {
   .grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
+
   .gridHeads {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
 .card {
   background: var(--color-card);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  overflow: clip;
+  border-radius: 1.5rem;
+  overflow: hidden;
   display: grid;
-  gap: .5rem;
-  transition: transform .2s ease, box-shadow .2s ease;
+  gap: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px color-mix(in oklab, var(--color-foreground) 10%, transparent);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 }
+
 .avatarWrap {
   position: relative;
   aspect-ratio: 1 / 1;
+  overflow: hidden;
 }
+
 .avatar {
   object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
+
 .meta {
-  padding: .8rem;
+  padding: 1.5rem 1rem;
+  text-align: center;
 }
+
+.meta h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-foreground);
+  margin-bottom: 0.5rem;
+}
+
 .meta p {
-  color: color-mix(in oklab, var(--color-foreground) 70%, transparent);
+  font-size: 0.875rem;
+  color: color-mix(in oklab, var(--color-foreground) 60%, transparent);
+  font-weight: 500;
 }

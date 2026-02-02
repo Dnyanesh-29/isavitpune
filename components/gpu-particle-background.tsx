@@ -6,9 +6,10 @@ import * as THREE from "three"
 export function GPUParticleBackground() {
   const containerRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const shouldReduceMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   useEffect(() => {
-    if (!canvasRef.current) return
+    if (!canvasRef.current || shouldReduceMotion) return
 
     let animationFrameId: number
     let scene: THREE.Scene
@@ -291,7 +292,10 @@ export function GPUParticleBackground() {
             gl_PointSize = 4.5 * (1.0 / -mvPosition.z);
         }`
 
-      const TEXTURE_SIZE = 512
+      // Reduce particle count on lower-end devices for better performance
+      const pixelRatio = Math.min(window.devicePixelRatio, 1.5)
+      let TEXTURE_SIZE = 512
+      if (pixelRatio < 1) TEXTURE_SIZE = 256
       const TEXTURE_HEIGHT = TEXTURE_SIZE
       const TEXTURE_WIDTH = TEXTURE_SIZE * 2
 
@@ -304,8 +308,9 @@ export function GPUParticleBackground() {
         antialias: true,
         alpha: true,
       })
-      renderer.setPixelRatio(window.devicePixelRatio)
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5))
       renderer.setSize(window.innerWidth, window.innerHeight)
+      renderer.powerPreference = 'high-performance'
 
       let rotationY = 0
 
@@ -419,8 +424,11 @@ export function GPUParticleBackground() {
   }, [])
 
   return (
-    <div ref={containerRef} style={{ position: "absolute", inset: 0 }}>
-      <canvas ref={canvasRef} style={{ display: "block" }} />
+    <div
+      ref={containerRef}
+      style={{ position: "absolute", inset: 0, overflow: "hidden", width: "100%", height: "100%" }}
+    >
+      <canvas ref={canvasRef} style={{ display: "block", overflow: "hidden", width: "100%", height: "100%" }} />
     </div>
   )
 }

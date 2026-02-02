@@ -1,6 +1,8 @@
 .main {
-  overflow-x: hidden;
+  overflow: hidden;
+  /* Remove explicit overflow-y to use default document scrolling */
   width: 100%;
+  max-width: 100%;
 }
 
 /* Full viewport height hero section */
@@ -14,7 +16,7 @@
   background: #00040a;
   overflow: hidden;
   width: 100%;
-  max-width: 100vw;
+  max-width: 100%;
 }
 
 /* Spline iframe as bg */
@@ -76,6 +78,7 @@
   max-width: 100%;
   width: 100%;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* re-enable interactivity where needed */

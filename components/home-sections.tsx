@@ -2,10 +2,10 @@
 
 import { useEffect, useRef } from "react"
 import styles from "./home-sections.module.css"
-import { Wrench, Trophy, GraduationCap } from "lucide-react"
 import { EventCard } from "@/components/event-card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link" // add next/link import for client-side navigation
+import { FeaturesCarousel } from "@/components/features-carousel"
 
 export function HomeSections() {
   const rootRef = useRef<HTMLDivElement | null>(null)
@@ -31,44 +31,9 @@ export function HomeSections() {
 
   return (
     <div ref={rootRef} className={styles.wrapper}>
-      {/* Features */}
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle} data-reveal>
-          What you’ll get
-        </h2>
-        <div className={styles.features} role="list">
-          <article className={styles.card} data-reveal>
-            <div className={styles.cardHead}>
-              <Wrench aria-hidden className={styles.icon} />
-              <h3 className={styles.cardTitle}>Hands-on Workshops</h3>
-            </div>
-            <p className={styles.cardText}>From embedded systems to AI—learn by building.</p>
-          </article>
-
-          <article className={styles.card} data-reveal>
-            <div className={styles.cardHead}>
-              <Trophy aria-hidden className={styles.icon} />
-              <h3 className={styles.cardTitle}>Flagship Events</h3>
-            </div>
-            <p className={styles.cardText}>Compete, collaborate, and showcase your skills.</p>
-          </article>
-
-          <article className={styles.card} data-reveal>
-            <div className={styles.cardHead}>
-              <GraduationCap aria-hidden className={styles.icon} />
-              <h3 className={styles.cardTitle}>Industry Mentorship</h3>
-            </div>
-            <p className={styles.cardText}>Guidance from experts to accelerate your growth.</p>
-          </article>
-        </div>
-      </section>
+      <FeaturesCarousel />
 
       {/* Events */}
-
-
-
-
-
 
       <section className={styles.section}>
         <h2 className={styles.sectionTitle} data-reveal>

@@ -18,6 +18,7 @@ export default function HomePage() {
               title="Innovate. Learn. Lead."
               subtitle="ISA Student Section at VIT Pune fosters a vibrant community for electronics, automation, and tech enthusiasts through hands-on events, workshops, and competitions."
               invert
+              useTypingEffect={true}
             />
           </div>
         </section>

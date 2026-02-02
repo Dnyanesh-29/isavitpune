@@ -14,10 +14,26 @@ const coreTeam = [
   { name: "Member 4", role: "Treasurer", img: "/team/treasurer.jpg" },
 ]
 const heads = [
-  { name: "Dnyanesh", role: "WEB DEV Head", img: "https://github.com/Dnyanesh-29/isavitpune/blob/main/public/images/Dnyanesh_web1.jpg?raw=true" },
-  { name: "AATISH", role: "WEB DEV Head", img: "https://github.com/Dnyanesh-29/isavitpune/blob/main/public/images/AATISH%20_web2.JPG?raw=true" },
-  { name: "JAYESH", role: "AIML Head", img: "https://github.com/Dnyanesh-29/isavitpune/blob/main/public/images/JAYESH_AI2.jpg?raw=true" },
-  { name: "ATUL", role: "AIML Head", img: "https://github.com/Dnyanesh-29/isavitpune/blob/main/public/images/ATUL_AI1.png?raw=true" },
+  {
+    name: "Dnyanesh",
+    role: "WEB DEV Head",
+    img: "https://github.com/Dnyanesh-29/isavitpune/blob/main/public/images/Dnyanesh_web1.jpg?raw=true",
+  },
+  {
+    name: "AATISH",
+    role: "WEB DEV Head",
+    img: "https://github.com/Dnyanesh-29/isavitpune/blob/main/public/images/AATISH%20_web2.JPG?raw=true",
+  },
+  {
+    name: "JAYESH",
+    role: "AIML Head",
+    img: "https://github.com/Dnyanesh-29/isavitpune/blob/main/public/images/JAYESH_AI2.jpg?raw=true",
+  },
+  {
+    name: "ATUL",
+    role: "AIML Head",
+    img: "https://github.com/Dnyanesh-29/isavitpune/blob/main/public/images/ATUL_AI1.png?raw=true",
+  },
   { name: "Member 9", role: "PR Head", img: "/team/pr-head.jpg" },
   { name: "Member 10", role: "Logistics Head", img: "/team/ARADHAY_KOPULWAR_cyber.jpg" },
 ]
@@ -33,7 +49,10 @@ export default function TeamPage() {
           ctas={false}
         />
         <section className={styles.section} aria-label="Core Team">
-          <h2 className={styles.sectionTitle}>Core Team</h2>
+          <div className={styles.titleContainer}>
+            <h2 className={styles.sectionTitle}>Core Team</h2>
+            <div className={styles.titleUnderline}></div>
+          </div>
           <div className={styles.grid}>
             {coreTeam.map((m, idx) => (
               <motion.article
@@ -63,7 +82,10 @@ export default function TeamPage() {
         </section>
 
         <section className={styles.section} aria-label="Department Heads">
-          <h2 className={styles.sectionTitle}>Heads</h2>
+          <div className={styles.titleContainer}>
+            <h2 className={styles.sectionTitle}>Heads</h2>
+            <div className={styles.titleUnderline}></div>
+          </div>
           <div className={styles.gridHeads}>
             {heads.map((m, idx) => (
               <motion.article

@@ -3,6 +3,7 @@
 import styles from "./page-header.module.css"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { TypingText } from "@/components/typing-text"
 
 export function PageHeader({
   title,
@@ -10,13 +11,64 @@ export function PageHeader({
   ctas = true,
   invert = false,
   className = "",
+  useTypingEffect = false,
 }: {
   title: string
   subtitle: string
   ctas?: boolean
   invert?: boolean
   className?: string
+  useTypingEffect?: boolean
 }) {
+  if (useTypingEffect) {
+    return (
+      <div className={`${styles.wrap} ${invert ? styles.invert : ""} ${className}`}>
+        <motion.h1
+          className={`${styles.title} text-balance`}
+          initial={{ opacity: 1 }}
+          whileInView="show"
+          viewport={{ once: true, margin: "-20% 0% -10% 0%" }}
+        >
+          <TypingText
+            text={title}
+            className={styles.titleWord}
+            speed={60}
+            backSpeed={40}
+            backDelay={2000}
+            startDelay={200}
+            loop={true}
+          />
+        </motion.h1>
+        <motion.p
+          className={`${styles.subtitle} text-pretty`}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          {subtitle}
+        </motion.p>
+
+        {ctas && (
+          <motion.div
+            className={`${styles.ctas} ${invert ? styles.ctasInvert : ""}`}
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+          >
+            <Link href="/events" className={`${styles.primaryBtn} ${invert ? styles.primaryBtnInvert : ""}`}>
+              Explore Events
+            </Link>
+            <Link href="/contact" className={`${styles.secondaryBtn} ${invert ? styles.secondaryBtnInvert : ""}`}>
+              Join ISA
+            </Link>
+          </motion.div>
+        )}
+      </div>
+    )
+  }
+
   const words = title.split(" ")
   return (
     <div className={`${styles.wrap} ${invert ? styles.invert : ""} ${className}`}>
