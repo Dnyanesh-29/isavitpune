@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { Inter, JetBrains_Mono } from "next/font/google"
 import "./globals.css"
 import { Suspense } from "react"
+import { CursorTracker } from "@/components/cursor-tracker"
 
 const inter = Inter({ subsets: ["latin"] })
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] })
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <body className="font-sans">
+        <CursorTracker />
         <Suspense fallback={null}>{children}</Suspense>
         <Analytics />
       </body>
